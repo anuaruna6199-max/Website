@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEMMAI - A Legacy, Reimagined</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-light: #fbf9f6;
+            --bg-dark: #1a1a1a;
+            --bg-dark-navy: #2c3e50;
+            --text-dark: #1a1a1a;
+            --text-light: #ffffff;
+            --text-gray: #666666;
+            --accent: #c4a96d;
+            --border: #e0e0e0;
+        }
+
+        html, body {
+            font-family: 'Georgia', serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: -0.5px;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            padding: 12px 32px;
+            border: 1px solid var(--text-dark);
+            background: var(--text-dark);
+            color: var(--text-light);
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
+        }
+
+        button:hover {
+            background: transparent;
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, var(--bg-light) 0%, #f5f2ed 100%);
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 8vw, 4rem);
+            margin-bottom: 2rem;
+        }
+
+        .hero-cta {
+            margin-top: 2rem;
+        }
+
+        .hero-image {
+            flex: 1;
+            height: 100%;
+            background: linear-gradient(135deg, #e8e5df 0%, #f5f2ed 100%);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+            font-style: italic;
+        }
+
+        /* Brand Logo */
+        .brand-logo {
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+        }
+
+        /* Section Spacing */
+        section {
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        /* Born From Section */
+        .born-section {
+            background: var(--bg-light);
+        }
+
+        .born-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .born-image {
+            aspect-ratio: 3/4;
+            background: linear-gradient(135deg, #d4cfc5 0%, #e8e5df 100%);
+            border-radius: 4px;
+        }
+
+        .born-text h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Dark Section */
+        .dark-section {
+            background: var(--bg-dark-navy);
+            color: var(--text-light);
+        }
+
+        .dark-section h2 {
+            color: var(--text-light);
+        }
+
+        .dark-section p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .curate-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .curate-image {
+            aspect-ratio: 1/1;
+            background: linear-gradient(135deg, #4a4a4a 0%, #3a3a3a 100%);
+            border-radius: 4px;
+        }
+
+        /* For Women Section */
+        .for-women {
+            background: var(--bg-light);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .for-women-image {
+            aspect-ratio: 1/1;
+            background: linear-gradient(135deg, #e8e5df 0%, #f5f2ed 100%);
+            border-radius: 4px;
+        }
+
+        /* Gallery Grid */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .gallery-item {
+            background: linear-gradient(135deg, #e8e5df 0%, #f5f2ed 100%);
+            aspect-ratio: 1/1.2;
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            color: var(--text-dark);
+        }
+
+        .gallery-item h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-item p {
+            font-size: 0.9rem;
+        }
+
+        /* Collection Grid */
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .collection-grid-5 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .collection-item-5 {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .collection-image-5 {
+            aspect-ratio: 1/1;
+            background: linear-gradient(135deg, #e8e5df 0%, #f5f2ed 100%);
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+        }
+
+        .collection-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .collection-item:nth-child(even) {
+            direction: rtl;
+        }
+
+        .collection-item > * {
+            direction: ltr;
+        }
+
+        .collection-image {
+            aspect-ratio: 1/1;
+            background: linear-gradient(135deg, #e8e5df 0%, #f5f2ed 100%);
+            border-radius: 4px;
+        }
+
+        /* We Look Closer */
+        .look-closer {
+            background: var(--bg-dark-navy);
+            color: var(--text-light);
+        }
+
+        .closer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .closer-image {
+            aspect-ratio: 1/1;
+            background: linear-gradient(135deg, #4a4a4a 0%, #3a3a3a 100%);
+            border-radius: 4px;
+        }
+
+        /* Not Repeated */
+        .not-repeated {
+            background: var(--bg-dark-navy);
+            color: var(--text-light);
+            text-align: center;
+            padding: 120px 20px;
+        }
+
+        .not-repeated h2 {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        /* Where SEMMAI Begins */
+        .where-namai {
+            background: var(--bg-light);
+            padding: 120px 20px;
+        }
+
+        .namai-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .namai-item {
+            text-align: center;
+        }
+
+        .namai-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--bg-dark);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+        }
+
+        .namai-item h3 {
+            font-size: 1.2rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--bg-dark-navy);
+            color: var(--text-light);
+            padding: 120px 20px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .cta-button {
+            margin-top: 2rem;
+            background: var(--text-light);
+            color: var(--bg-dark-navy);
+            border: none;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--text-light);
+            border-color: var(--text-light);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: var(--bg-light);
+            padding: 80px 20px;
+        }
+
+        .faq-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-item h3 {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-item.active p {
+            display: block;
+        }
+
+        .faq-item p {
+            display: none;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: var(--bg-light);
+            padding: 100px 20px;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: var(--text-light);
+            padding: 3rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+            font-size: 0.95rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: 'Georgia', serif;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--text-dark);
+        }
+
+        .form-group input::placeholder {
+            color: #ccc;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 14px;
+            margin-top: 1rem;
+        }
+
+        .form-message {
+            margin-top: 1rem;
+            padding: 12px;
+            border-radius: 4px;
+            text-align: center;
+            display: none;
+        }
+
+        .form-message.success {
+            background: #d4edda;
+            color: #155724;
+            display: block;
+        }
+
+        .form-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            display: block;
+        }
+
+        /* Payment URL Section */
+        .payment-section {
+            background: var(--bg-dark-navy);
+            color: var(--text-light);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .payment-section h2 {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .payment-link {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--text-light);
+            color: var(--bg-dark-navy);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .payment-link:hover {
+            background: var(--accent);
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--text-light);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            section {
+                padding: 40px 20px;
+            }
+
+            .hero {
+                flex-direction: column;
+                height: auto;
+                min-height: 80vh;
+            }
+
+            .hero-image {
+                display: none;
+            }
+
+            .born-content,
+            .curate-content,
+            .closer-content,
+            .for-women {
+                grid-template-columns: 1fr;
+            }
+
+            .collection-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .collection-item {
+                grid-template-columns: 1fr;
+            }
+
+            .collection-item:nth-child(even) {
+                direction: ltr;
+            }
+
+            .collection-grid-5 {
+                grid-template-columns: 1fr;
+            }
+
+            .namai-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-container {
+                padding: 2rem;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            section {
+                padding: 30px 15px;
+            }
+
+            .form-container {
+                padding: 1.5rem;
+                border: none;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="brand-logo">SEMMAI</div>
+            <h1>A legacy,<br>reimagined</h1>
+            <p style="color: var(--text-gray); font-size: 1.1rem; margin-bottom: 2rem;">Discover the art of timeless jewellery rooted in tradition.</p>
+            <div class="hero-cta">
+                <button onclick="document.getElementById('form-section').scrollIntoView({behavior: 'smooth'})">Explore Collection</button>
+            </div>
+        </div>
+        <div class="hero-image">Heritage Image</div>
+    </section>
+
+    <!-- Born From Section -->
+    <section class="born-section">
+        <div class="container">
+            <div class="born-content">
+                <div class="born-image"></div>
+                <div class="born-text">
+                    <h2>Born from what came before</h2>
+                    <p>Every piece in our collection tells a story of craftsmanship passed down through generations. Our artisans combine ancient techniques with contemporary vision to create jewellery that resonates with meaning.</p>
+                    <p>We believe that true luxury is in the details—the precision of hand-carving, the warmth of noble metals, the authenticity of every design choice.</p>
+                    <button style="margin-top: 2rem;">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Old Crafts Section -->
+    <section class="dark-section">
+        <div class="container">
+            <div class="curate-content">
+                <div class="curate-text">
+                    <h2>Old crafts.<br>New expression.</h2>
+                    <p>At SEMMAI, we curate collections that honor heritage while embracing innovation. Each piece is a testament to the symbiosis of tradition and contemporary aesthetics.</p>
+                    <p style="margin-top: 1.5rem; font-weight: 500;">CURATE.</p>
+                </div>
+                <div class="curate-image"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- For Women Section -->
+    <section class="born-section">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+                <div class="for-women-image"></div>
+                <div>
+                    <h2>For women who wear<br>jewellery with intention</h2>
+                    <p>Our pieces are designed for those who understand that jewellery is not mere ornamentation. It's a declaration. It's a choice. It's a statement about who you are.</p>
+                    <p>From everyday elegance to ceremonial grandeur, every collection is crafted with the discerning woman in mind.</p>
+                    <button style="margin-top: 2rem;">View Collection</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="born-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Jewellery with a sense of place.</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <h3>Heritage</h3>
+                    <p>Ancient traditions meet modern artistry</p>
+                </div>
+                <div class="gallery-item">
+                    <h3>Craft</h3>
+                    <p>Hand-finished with meticulous attention</p>
+                </div>
+                <div class="gallery-item">
+                    <h3>Soul</h3>
+                    <p>Each piece carries a unique narrative</p>
+                </div>
+                <div class="gallery-item">
+                    <h3>Vision</h3>
+                    <p>Contemporary aesthetics, timeless appeal</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collections Section -->
+    <section class="born-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Every collection begins with a story</h2>
+            <div class="collection-grid-5">
+                <div class="collection-item-5">
+                    <div class="collection-image-5"></div>
+                    <div>
+                        <h3>KARANI</h3>
+                        <p>The Karani collection draws inspiration from ancient temple carvings, each piece a meditation on geometric perfection and spiritual symmetry.</p>
+                    </div>
+                </div>
+                <div class="collection-item-5">
+                    <div class="collection-image-5"></div>
+                    <div>
+                        <h3>SURBANDHAN</h3>
+                        <p>Surbandhan celebrates the bonds that tie us together, featuring flowing designs that echo traditional embroidery patterns.</p>
+                    </div>
+                </div>
+                <div class="collection-item-5">
+                    <div class="collection-image-5"></div>
+                    <div>
+                        <h3>DEVI</h3>
+                        <p>The Devi collection honors divine femininity through bold, sculptural forms and rich materiality.</p>
+                    </div>
+                </div>
+                <div class="collection-item-5">
+                    <div class="collection-image-5"></div>
+                    <div>
+                        <h3>ASHITVA</h3>
+                        <p>Ashitva represents eternity and essence, exploring the interplay of light and shadow through minimalist compositions.</p>
+                    </div>
+                </div>
+                <div class="collection-item-5">
+                    <div class="collection-image-5"></div>
+                    <div>
+                        <h3>KORKAI</h3>
+                        <p>The Korkai pearl collective celebrates the lustrous beauty of pearls sourced from ethical origins. Each piece harmonizes the organic elegance of pearls with contemporary design sensibilities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- We Look Closer Section -->
+    <section class="look-closer">
+        <div class="container">
+            <div class="closer-content">
+                <div>
+                    <h2>We look closer.</h2>
+                    <p>In the folds of silk. In the grain of stone. In the patina of time. We examine every detail to understand its significance.</p>
+                    <p>This careful observation informs every design decision, ensuring that beauty is never accidental.</p>
+                </div>
+                <div class="closer-image"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Not Repeated Section -->
+    <section class="not-repeated">
+        <div class="container">
+            <h2>Some pieces are meant to be found.<br>Not repeated.</h2>
+            <p style="margin-top: 1.5rem;">Limited editions and bespoke commissions for those who seek the extraordinary.</p>
+        </div>
+    </section>
+
+    <!-- Where SEMMAI Begins -->
+    <section class="where-namai">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Where SEMMAI begins.</h2>
+            <div class="namai-grid">
+                <div class="namai-item">
+                    <div class="namai-icon"></div>
+                    <h3>Artisan Collective</h3>
+                    <p style="font-size: 0.9rem;">A network of master craftspeople dedicated to excellence</p>
+                </div>
+                <div class="namai-item">
+                    <div class="namai-icon"></div>
+                    <h3>Premium Materials</h3>
+                    <p style="font-size: 0.9rem;">High-quality brass and non-precious metals with 18k gold plating</p>
+                </div>
+                <div class="namai-item">
+                    <div class="namai-icon"></div>
+                    <h3>Quality Assurance</h3>
+                    <p style="font-size: 0.9rem;">Every piece crafted for lasting beauty and durability</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container" style="max-width: 700px;">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Questions, answered.</h2>
+            <div class="faq-item">
+                <h3>How are your pieces designed? <span>▼</span></h3>
+                <p>Our design process begins with extensive research into traditional techniques and contemporary aesthetics. We collaborate with artisans to ensure each piece meets our rigorous standards.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What materials do you use? <span>▼</span></h3>
+                <p>We use high-quality brass and other non-precious metals with 18k gold plating. Each piece is carefully crafted to ensure durability and beauty while maintaining accessibility and ethical sourcing standards.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do you offer custom pieces? <span>▼</span></h3>
+                <p>Yes, we welcome bespoke commissions. Please reach out through our contact form to discuss your vision.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What is your return and refund policy? <span>▼</span></h3>
+                <p>Returns and refunds are not possible. However, for certain pieces, replacement is available if quality issues arise. Please note that an unboxing video is mandatory for any replacement claims.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section" id="form-section">
+        <div class="form-container">
+            <h2>Enter the world of SEMMAI</h2>
+            <p style="text-align: center; color: var(--text-gray); margin-bottom: 2rem;">Join our community and receive curated updates and exclusive access to our collections.</p>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Your phone number" required>
+                </div>
+                <button type="submit" class="form-submit">Join SEMMAI</button>
+                <div class="form-message" id="formMessage"></div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Important Policy Section -->
+    <section class="born-section">
+        <div class="container" style="max-width: 800px; margin: 0 auto;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Our Commitment to Quality</h2>
+            <div style="background: var(--text-light); padding: 2rem; border: 1px solid var(--border); border-radius: 4px;">
+                <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Craftsmanship & Materials</h3>
+                <p style="margin-bottom: 1.5rem;">Each SEMMAI piece is meticulously crafted using high-quality brass and non-precious metals with 18k gold plating, ensuring lasting beauty and durability.</p>
+
+                <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Our Replacement Policy</h3>
+                <p style="margin-bottom: 1rem;"><strong>Please Note:</strong> Returns and refunds are not possible. However, for certain pieces, replacement is available if quality issues arise.</p>
+
+                <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--accent);">Unboxing Video Requirement</h3>
+                <p>To qualify for replacement, an unboxing video is mandatory. This helps us assess the condition of your piece upon arrival and ensure the authenticity of any claims. When recording your unboxing video:</p>
+                <ul style="margin: 1rem 0 1rem 2rem; line-height: 2;">
+                    <li>Capture the entire unboxing process</li>
+                    <li>Show the piece clearly from all angles</li>
+                    <li>Document any visible damage immediately</li>
+                    <li>Keep the video for your records</li>
+                </ul>
+                <p style="margin-top: 1.5rem; font-style: italic; color: var(--text-gray);">This policy ensures we maintain the highest standards of quality and authenticity across all SEMMAI pieces.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section class="payment-section">
+        <div class="container">
+            <h2>Ready to invest in excellence?</h2>
+            <p style="margin-bottom: 2rem;">Explore secure payment options and complete your purchase.</p>
+            <a href="https://payments.cashfree.com/forms/getaudit" target="_blank" class="payment-link">Proceed to Payment</a>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Carry something that remembers.</h2>
+            <p style="margin-bottom: 2rem;">Every piece from SEMMAI carries the memory of its creation and the promise of timeless beauty.</p>
+            <button class="cta-button">Start Your Journey</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 SEMMAI. All rights reserved. | A legacy, reimagined.</p>
+    </footer>
+
+    <script>
+        // AppScript URL
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwOn9t_jxcUntTxKyN7JdEnWDxW4F1UbrPuLqlhaj2YwgQSulKhpwGfg5bm0LeYeGpz/exec';
+
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+
+            // Validate form
+            if (!name || !email || !phone) {
+                showError('Please fill in all fields.');
+                return;
+            }
+
+            if (!isValidEmail(email)) {
+                showError('Please enter a valid email address.');
+                return;
+            }
+
+            // Build URL with query parameters
+            const url = SCRIPT_URL + '?' + new URLSearchParams({
+                name: name,
+                email: email,
+                phone: phone
+            });
+
+            // Send GET request with no-cors mode
+            fetch(url, {
+                method: 'GET',
+                mode: 'no-cors'
+            })
+            .then(() => {
+                showSuccess();
+                // Reset form
+                document.getElementById('contactForm').reset();
+            })
+            .catch(() => {
+                showSuccess(); // Show success even on catch (opaque response)
+                document.getElementById('contactForm').reset();
+            });
+        });
+
+        function isValidEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function showSuccess() {
+            const messageDiv = document.getElementById('formMessage');
+            messageDiv.textContent = '✓ Thank you! Your message has been sent. We\'ll be in touch soon.';
+            messageDiv.className = 'form-message success';
+            setTimeout(() => {
+                messageDiv.className = 'form-message';
+            }, 5000);
+        }
+
+        function showError(message) {
+            const messageDiv = document.getElementById('formMessage');
+            messageDiv.textContent = '✗ ' + message;
+            messageDiv.className = 'form-message error';
+        }
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-item h3').forEach(item => {
+            item.addEventListener('click', function() {
+                const parent = this.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
